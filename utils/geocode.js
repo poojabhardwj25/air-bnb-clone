@@ -1,28 +1,21 @@
-const {default: fetch} = require("node-fetch");
+const { default: fetch } = require("node-fetch");
 
 async function geocode(location) {
   try {
     const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`;
-
-    // Add a timeout controller
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000); // 8 sec timeout
-
     const response = await fetch(url, {
-      headers: {
-        "User-Agent": "WanderlustApp/1.0 (wanderlustproject@outlook.com)" // ✅ your custom name
-      },
-      signal: controller.signal
+      headers: { "User-Agent": "WanderlustApp/1.0 (wanderlustproject@outlook.com)" },
     });
 
-    clearTimeout(timeout);
-
     const data = await response.json();
+
+    console.log("🌍 API Response for:", location);
+    console.log(data);
 
     if (data && data.length > 0) {
       return {
         lat: parseFloat(data[0].lat),
-        lon: parseFloat(data[0].lon)
+        lon: parseFloat(data[0].lon),
       };
     } else {
       console.log("❌ No location found for:", location);
@@ -32,9 +25,6 @@ async function geocode(location) {
     console.error("🌍 Geocode error:", err.message);
     return null;
   }
-  console.log("📍 Data from Nominatim:", data);
-
 }
 
 module.exports = geocode;
-
