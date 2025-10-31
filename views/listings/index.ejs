@@ -32,6 +32,35 @@
         display: flex;
         align-items: center;
       }
+
+      /* --- Category Bar Responsive Fix --- */
+#filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  #filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 10px;
+    scroll-snap-type: x mandatory;
+  }
+
+  #filters > div {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    text-align: center;
+  }
+
+  #filters::-webkit-scrollbar {
+    display: none;
+  }
+}
+
     </style>
     <div id="filters">
       <div class="filter">
