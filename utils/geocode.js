@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const {default: fetch} = require("node-fetch");
 
 async function geocode(location) {
   try {
