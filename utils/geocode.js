@@ -1,22 +1,35 @@
-const { default:fetch} = require("node-fetch");
+const fetch = require("node-fetch");
 
 async function geocode(location) {
-  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`;
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`;
 
-  const response = await fetch(url, {
-    headers: { "User-Agent": "Wanderlust-Zyra-Clone" },
-  });
+    // Add a timeout controller
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000); // 8 sec timeout
 
-  const data = await response.json();
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": "WanderlustApp/1.0 (wanderlustproject@outlook.com)" // ✅ your custom name
+      },
+      signal: controller.signal
+    });
 
-  // If location found
-  if (data && data.length > 0) {
-    return {
-      lat: parseFloat(data[0].lat),
-      lon: parseFloat(data[0].lon),
-    };
-  } else {
-    console.log("❌ No location found for:", location);
+    clearTimeout(timeout);
+
+    const data = await response.json();
+
+    if (data && data.length > 0) {
+      return {
+        lat: parseFloat(data[0].lat),
+        lon: parseFloat(data[0].lon)
+      };
+    } else {
+      console.log("❌ No location found for:", location);
+      return null;
+    }
+  } catch (err) {
+    console.error("🌍 Geocode error:", err.message);
     return null;
   }
 }
