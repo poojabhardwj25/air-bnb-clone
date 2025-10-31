@@ -32,7 +32,9 @@ async function geocode(location) {
     console.error("🌍 Geocode error:", err.message);
     return null;
   }
+  console.log("📍 Data from Nominatim:", data);
+
 }
 
 module.exports = geocode;
-console.log("📍 Data from Nominatim:", data);
+
