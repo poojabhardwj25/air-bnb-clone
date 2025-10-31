@@ -35,3 +35,4 @@ async function geocode(location) {
 }
 
 module.exports = geocode;
+console.log("📍 Data from Nominatim:", data);
