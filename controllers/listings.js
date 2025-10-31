@@ -77,19 +77,44 @@ module.exports.renderEditForm=async(req,res)=>{
     res.render("listings/edit.ejs",{listing,originalImageUrl}) 
 }    
 
-module.exports.updateListing=async(req,res)=>{
-    let {id}=req.params;
-    let listing=await Listing.findByIdAndUpdate(id,{...req.body.listing},{ new: true, runValidators: true });
-    
-    if(typeof req.file !=="undefined"){
-    let url=req.file.path;
-    let filename=req.file.filename;
-    listing.image={url,filename};
-    await listing.save();
-    
+
+
+module.exports.updateListing = async (req, res) => {
+  let { id } = req.params;
+  let listing = await Listing.findById(id);
+
+  if (!listing) {
+    req.flash("error", "Listing not found!");
+    return res.redirect("/listings");
+  }
+
+  // 🧩 Step 1: Update text fields (title, price, etc.)
+  listing.set(req.body.listing);
+
+  // 🧭 Step 2: If location changed, re-geocode to update map coordinates
+  if (req.body.listing.location && req.body.listing.location !== listing.location) {
+    const geoData = await geocode(req.body.listing.location);
+    if (geoData) {
+      listing.geometry = {
+        type: "Point",
+        coordinates: [geoData.lon, geoData.lat],
+      };
     }
-    req.flash("success","listing Updated")
-    res.redirect(`/listings/${id}`)
+  }
+
+  // 🖼️ Step 3: If new image uploaded
+  if (typeof req.file !== "undefined") {
+    listing.image = {
+      url: req.file.path,
+      filename: req.file.filename,
+    };
+  }
+
+  // 💾 Step 4: Save updated listing
+  await listing.save();
+
+  req.flash("success", "Listing Updated");
+  res.redirect(`/listings/${listing._id}`);
 };
 
 module.exports.destroyListing=async(req,res)=>{
