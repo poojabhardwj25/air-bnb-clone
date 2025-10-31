@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     style: "https://api.maptiler.com/maps/streets/style.json?key=7oKBr22VVA5PAAcIgf9I"
 ,
     center: listingData.coordinates,
-    zoom: 10
+    zoom: 13
   });
 
 
