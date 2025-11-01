@@ -57,6 +57,7 @@ module.exports.createListing = async (req, res, next) => {
   }
   console.log("Geocoded coordinates:", coordinates);
 
+   
 
   await newListing.save();
   console.log("✅ Saved successfully with coordinates:", newListing);

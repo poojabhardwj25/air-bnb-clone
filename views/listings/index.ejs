@@ -1,67 +1,85 @@
 <%layout("/layouts/boilerplate")%>
 <body>
-    <style>
-      #filters{
-        display: flex;
-        flex-wrap:wrap;
-        align-items: center;
-      }
-      .filter{
-        text-align: center;
-        margin-right: 2rem;
-        margin-top: 2rem;
-        opacity: 0.7;
-        
-      }
-      .filter:hover{
-        opacity: 1;
-        cursor: pointer;
-      }
-      .filter p{
-        size: 0.8rem;
-      }
-      .tax-info{
-        display: none;
-      }
-      .tax-toggle{
-        border:1px solid black;
-        border-radius: 1rem;
-        height: 3.25rem;
-        padding: 1rem;
-        margin-left: 2rem;
-        display: flex;
-        align-items: center;
-      }
-
-      /* --- Category Bar Responsive Fix --- */
-#filters {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-
-@media (max-width: 768px) {
+<style>
+  /* ==========================
+     FILTER ICONS STYLING
+  =========================== */
   #filters {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    padding: 10px;
-    scroll-snap-type: x mandatory;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
   }
 
-  #filters > div {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
+  .filter {
     text-align: center;
+    opacity: 0.7;
+    transition: all 0.3s ease;
   }
 
-  #filters::-webkit-scrollbar {
+  .filter:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+
+  .filter i {
+    font-size: 1.4rem;
+  }
+
+  .filter p {
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+  }
+
+  .tax-info {
     display: none;
   }
-}
 
-    </style>
+  .tax-toggle {
+    border: 1px solid black;
+    border-radius: 1rem;
+    height: 3.25rem;
+    padding: 1rem;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  /* ==========================
+     RESPONSIVE DESIGN FIX
+  =========================== */
+  @media (max-width: 768px) {
+    #filters {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      padding: 10px;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+    }
+
+    #filters > div {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      text-align: center;
+    }
+
+    #filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tax-toggle {
+      margin-left: 0;
+      margin-top: 10px;
+      flex: 0 0 auto;
+    }
+  }
+</style>
+
     <div id="filters">
       <div class="filter">
         <div><i class="fa-solid fa-fire"></i></div>
