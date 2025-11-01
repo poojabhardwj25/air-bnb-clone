@@ -9,6 +9,7 @@ module.exports.index=(async(req,res)=>{
 
 module.exports.renderNewForm=(req,res)=>{
     console.log("user-",req.user)
+    console.log("Categories in enum:", Listing.schema.path("category").enumValues);
     res.render("listings/new.ejs")
 };
 
