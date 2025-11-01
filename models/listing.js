@@ -29,6 +29,7 @@ const listingSchema = new Schema({
       "Mountains",
       "Arctic",
       "Boats",
+      "Doms"
     ],
     required: true,
   },
