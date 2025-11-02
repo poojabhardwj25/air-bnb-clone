@@ -60,11 +60,22 @@ footer{
 .card{
     border: none !important;
     margin-bottom: 2rem;
+    animation: fadeInUp 0.5s ease forwards;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
+.card:hover {
+  transform: scale(1.03);
+  transition: 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
 .card-img-top{
     border-radius: 1rem  !important;
     width:100%  !important;
     object-fit: cover !important;
+      
 }
 
 .card-body{
