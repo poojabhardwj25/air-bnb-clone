@@ -1,181 +1,8 @@
-<!-- <%layout("/layouts/boilerplate")%>
-<body>
-  
-<style>
-  /* ==========================
-     FILTER ICONS STYLING
-  =========================== */
-  #filters {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
-  }
-
-  .filter {
-    text-align: center;
-    opacity: 0.7;
-    transition: all 0.3s ease;
-  }
-
-  .filter:hover {
-    opacity: 1;
-    transform: scale(1.05);
-    cursor: pointer;
-  }
-
-  .filter i {
-    font-size: 1.4rem;
-  }
-
-  .filter p {
-    font-size: 0.85rem;
-    margin-top: 0.2rem;
-  }
-
-  .tax-info {
-    display: none;
-  }
-
-  .tax-toggle {
-    border: 1px solid black;
-    border-radius: 1rem;
-    height: 3.25rem;
-    padding: 1rem;
-    margin-left: 2rem;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-  }
-
-  /* ==========================
-     RESPONSIVE DESIGN FIX
-  =========================== */
-  @media (max-width: 768px) {
-    #filters {
-      overflow-x: auto;
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      padding: 10px;
-      scroll-snap-type: x mandatory;
-      gap: 1rem;
-    }
-
-    #filters > div {
-      flex: 0 0 auto;
-      scroll-snap-align: center;
-      text-align: center;
-    }
-
-    #filters::-webkit-scrollbar {
-      display: none;
-    }
-
-    .tax-toggle {
-      margin-left: 0;
-      margin-top: 10px;
-      flex: 0 0 auto;
-    }
-  }
-</style>
-
-    <div id="filters">
-      <div class="filter">
-        <div><i class="fa-solid fa-fire"></i></div>
-        <p>Trending</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-bed"></i></div>
-        <p>Rooms</p>
-      </div> 
-  
-      <div class="filter">
-        <div><i class="fa-solid fa-person-swimming"></i></div>
-        <p>Amazing Pools</p>
-      </div>
-       <div class="filter">
-        <div><i class="fa-solid fa-umbrella-beach"></i></div>
-        <p>Beaches</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-mountain"></i></div>
-        <p>Mountains</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-brands fa-solid fa-fort-awesome"></i></div>
-        <p>Castles</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-campground"></i></div>
-        <p>Camping</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-cow"></i></div>
-        <p>Farms</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-snowflake"></i></div>
-        <p>Arctic</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-igloo"></i></div>
-        <p>Domes</p>
-      </div>
-      <div class="filter">
-        <div><i class="fa-solid fa-ship"></i></div>
-        <p>Boats</p>
-      </div>
-     <div class="tax-toggle">
-      <div class="form-check-reverse form-switch">
-     <input class="form-check-input" type="checkbox" role="switch" id="flexswitchCheckDefault">
-     <label class="form-check-label" for="switchCheckDefault">Display total before taxes</label>
-</div>
-     </div>
-    </div>
-    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 mt-3">
-    
-    <% for (let listing of allListings){%>
-    <a href="/listings/<%=listing._id%>"class="listing-link">
-    <div class="card col" >
-  <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_image" style="height:20rem">
-  <div class="card-img-overlay"></div>
-  <div class="card-body">
-    <p class="card-text">
-        <b><%=listing.title%></b>
-    <br>
-    &#8377; <%=listing.price?listing.price.toLocaleString("en-IN"):"N/A"%>/night
-    <i class="tax-info"> &nbsp; &nbsp;+18% GST</i>
-</p>
-  </div>
-</div>
-</a>
-<%}%>
-
-    </div>
-</body>
-
-<script>
-  let taxSwitch= document.getElementById("flexswitchCheckDefault");
-  taxSwitch.addEventListener("click",()=>{
-    let taxInfo=document.getElementsByClassName("tax-info")
-    for (info of taxInfo){
-      if(info.style.display!="inline"){
-        info.style.display="inline"
-      }else{
-        info.style.display="none";
-      }
-     
-    }
-  })
-</script> -->
-
 
 <% layout("/layouts/boilerplate") %>
 <body>
 
-<!-- 🌸 Improved Inline Styling for Filters & Cards -->
+<!-- Improved Inline Styling for Filters & Cards -->
 <style>
   /* =========================
      FILTER BAR DESIGN
@@ -185,15 +12,14 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-    padding: 1rem 2rem;
+    gap: 1rem;
+    margin: 1.2rem auto;
+    padding: 0.8rem 1.5rem;
     background: #fff;
     border-radius: 1.5rem;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    box-shadow:  0 2px 12px rgba(0, 0, 0, 0.05);
+    max-width: 95%;
+   
   }
 
   .filter {
@@ -215,8 +41,12 @@
   }
 
   .filter i {
-    font-size: 1.6rem;
-    color: #fa424d;
+  font-size: 1.8rem;
+  color: #ff5a5f;
+  background: #fff4f4;
+  padding: 0.8rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(255, 90, 95, 0.2);
   }
 
   .filter p {
@@ -237,13 +67,17 @@
      TAX TOGGLE DESIGN
   ========================== */
   .tax-toggle {
-    border: 1px solid #ddd;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    padding: 0.6rem 1.2rem;
+    border: none;
+    background: #fff4f4;
+    box-shadow: 0 2px 10px rgba(255, 90, 95, 0.15);
+    padding: 0.6rem 1rem;
     border-radius: 2rem;
     font-size: 0.9rem;
-    transition: all 0.3s ease;
+    font-weight:500;
+    color:#333
+    display:flex;
+    align-items:center:
+    gap:0.5rem;
   }
 
   .tax-toggle:hover {
@@ -397,7 +231,7 @@
      SCRIPT SECTION
 =========================== -->
 <script>
-  // 🌸 Tax Toggle Logic
+  //  Tax Toggle Logic
   const taxSwitch = document.getElementById("flexswitchCheckDefault");
   taxSwitch.addEventListener("click", () => {
     const taxInfo = document.getElementsByClassName("tax-info");
@@ -406,7 +240,7 @@
     }
   });
 
-  // 🌸 Active Filter Highlight
+  //  Active Filter Highlight
   const filters = document.querySelectorAll(".filter");
   filters.forEach(f => {
     f.addEventListener("click", () => {
