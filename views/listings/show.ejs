@@ -27,9 +27,9 @@
     <!-- Owner Buttons -->
     <% if (currUser && listing.owner._id.equals(currUser._id)) { %>
     <div class="d-flex justify-content-center gap-3 my-4 flex-wrap">
-      <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a>
+      <a href="/listings/<%= listing._id %>/edit" class="btn btn-edit">Edit</a>
       <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-        <button class="btn btn-outline-danger">Delete</button>
+        <button class="btn btn-delete">Delete</button>
       </form>
     </div>
     <% } %>
