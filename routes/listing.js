@@ -42,9 +42,9 @@ router
 router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync(listingController.renderEditForm))
 
 
+//Category Route
 
-
-
+router.get("/category/:category", wrapAsync(listingController.categoryListings));
 
 
 
