@@ -140,24 +140,20 @@ footer{
 .btn-edit{
     background-color: #fa424d !important;
     color: #fff !important;
-    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .btn-edit:hover{
     background-color: #cc0000 !important;
-    transform: scale(1.03);
 }
 
 .btn-delete{
     background-color: #222222 !important;
     color: #fff !important;
     border:none;
-    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .btn-delete:hover{
     background-color: #111!important;
-    transform: scale(1.03);
 }
 .rev-card{
   border: 1px solid #ddd;
@@ -238,7 +234,5 @@ footer{
     height: 180px;
   }
 
-  .single-listing-container {
-    padding: 0.5rem;
-  }
+  
 }
