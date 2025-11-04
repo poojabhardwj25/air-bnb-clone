@@ -147,3 +147,66 @@ footer{
   border-radius: 10px;
   margin-top: 10px;
 }
+/* =============== Responsive Show Page Enhancements =============== */
+
+/* For tablets and smaller laptops */
+@media (max-width: 992px) {
+  .col-8.offset-3,
+  .col-6.offset-3 {
+    width: 90% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+
+  .btns {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .show-img {
+    height: 35vh;
+    object-fit: cover;
+  }
+
+  .rev-card {
+    width: 100% !important;
+    margin: 1rem auto !important;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  }
+}
+
+
+@media (max-width: 576px) {
+  h3, h4 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .card-body {
+    padding: 0.8rem;
+  }
+
+  .show-img {
+    height: 30vh;
+  }
+
+  .btns {
+    flex-direction: column;
+    align-items: stretch;
+    margin: 1rem 0;
+  }
+
+  .btns .btn {
+    width: 100%;
+  }
+
+  .rev-card {
+    margin: 0.5rem auto;
+  }
+
+  #map {
+    height: 180px;
+  }
+}
