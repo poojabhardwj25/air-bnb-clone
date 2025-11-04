@@ -248,28 +248,29 @@ margin:0 auto 0.4rem auto;
     }
   });
 
-  //  Active Filter Highlight
-  const filters = document.querySelectorAll(".filter");
-  const container = document.getElementById("listingsContainer");
+// Active Filter Highlight
+const filters = document.querySelectorAll(".filter");
+const container = document.getElementById("listingsContainer");
 
-if (!filters || !container) return;
+if (filters && container) {
   filters.forEach(f => {
-    f.addEventListener("click", async() => {
-     const category = f.getAttribute("data-category");
+    f.addEventListener("click", async () => {
+      const category = f.getAttribute("data-category");
       filters.forEach(item => item.classList.remove("active"));
       f.classList.add("active");
 
-        try {
-          const res = await fetch(`/listings/category/${encodeURIComponent(category)}`);
-          if (!res.ok) throw new Error(`Server returned ${res.status}`);
-          const html = await res.text();
-          container.innerHTML = html;
-          
-        } catch (err) {
-          console.error("Error loading category:", err);
-        }
-      });
+      try {
+        const res = await fetch(`/listings/category/${encodeURIComponent(category)}`);
+        if (!res.ok) throw new Error(`Server returned ${res.status}`);
+        const html = await res.text();
+        container.innerHTML = html;
+      } catch (err) {
+        console.error("Error loading category:", err);
+      }
     });
+  });
+}
+
   
 </script>
 
