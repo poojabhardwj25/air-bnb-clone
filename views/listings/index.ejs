@@ -159,47 +159,47 @@ margin:0 auto 0.4rem auto;
      FILTER ICONS BAR
 =========================== -->
 <div id="filters">
-  <div class="filter active">
+  <div class="filter active" data-category="Trending">
     <div><i class="fa-solid fa-fire"></i></div>
     <p>Trending</p>
   </div>
-  <div class="filter">
+  <div class="filter" data-category="Rooms">
     <div><i class="fa-solid fa-bed"></i></div>
     <p>Rooms</p>
   </div>
-  <div class="filter">
+  <div class="filter" data-category="Amazing Pools">
     <div><i class="fa-solid fa-person-swimming"></i></div>
     <p>Amazing Pools</p>
   </div>
-  <div class="filter">
+  <div class="filter" data-category="Beaches">
     <div><i class="fa-solid fa-umbrella-beach"></i></div>
     <p>Beaches</p>
   </div>
-  <div class="filter">
+  <div class="filter" data-category="Mountains">
     <div><i class="fa-solid fa-mountain"></i></div>
     <p>Mountains</p>
   </div>
-  <div class="filter">
+  <div class="filter" data-category="Castles">
     <div><i class="fa-brands fa-fort-awesome"></i></div>
     <p>Castles</p>
   </div>
-  <div class="filter">
+  <div class="filter" data-category="Camping">
     <div><i class="fa-solid fa-campground"></i></div>
     <p>Camping</p>
   </div>
-  <div class="filter">
+  <div class="filter" data-category="Farms">
     <div><i class="fa-solid fa-cow"></i></div>
     <p>Farms</p>
   </div>
-  <div class="filter">
+  <div class="filter" data-category="Arctic">
     <div><i class="fa-solid fa-snowflake"></i></div>
     <p>Arctic</p>
   </div>
-  <div class="filter">
+  <div class="filter" data-category="Domes">
     <div><i class="fa-solid fa-igloo"></i></div>
     <p>Domes</p>
   </div>
-  <div class="filter">
+  <div class="filter" data-category="Boats">
     <div><i class="fa-solid fa-ship"></i></div>
     <p>Boats</p>
   </div>
@@ -215,6 +215,7 @@ margin:0 auto 0.4rem auto;
 <!-- ==========================
      LISTINGS GRID
 =========================== -->
+<div id="listingsContainer">
 <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 mt-3">
   <% for (let listing of allListings){ %>
     <a href="/listings/<%= listing._id %>" class="listing-link">
@@ -232,6 +233,7 @@ margin:0 auto 0.4rem auto;
     </a>
   <% } %>
 </div>
+</div>
 
 <!-- ==========================
      SCRIPT SECTION
@@ -248,12 +250,27 @@ margin:0 auto 0.4rem auto;
 
   //  Active Filter Highlight
   const filters = document.querySelectorAll(".filter");
+  const container = document.getElementById("listingsContainer");
+
+if (!filters || !container) return;
   filters.forEach(f => {
-    f.addEventListener("click", () => {
+    f.addEventListener("click", async() => {
+     const category = f.getAttribute("data-category");
       filters.forEach(item => item.classList.remove("active"));
       f.classList.add("active");
+
+        try {
+          const res = await fetch(`/listings/category/${encodeURIComponent(category)}`);
+          if (!res.ok) throw new Error(`Server returned ${res.status}`);
+          const html = await res.text();
+          container.innerHTML = html;
+          // re-run any JS that depends on the listing elements here (if any)
+        } catch (err) {
+          console.error("Error loading category:", err);
+        }
+      });
     });
-  });
+  });()
 </script>
 
 </body>
