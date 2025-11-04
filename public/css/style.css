@@ -144,30 +144,40 @@ footer{
   background-color: #fff;
 }
 
-/* Buttons */
+
+/* ---------- Buttons ---------- */
+.btns {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+/* 🔴 Edit button (Red) */
 .btn-edit {
-  background-color: #dc3545 !important;   /* 🔴 red for edit */
+  background-color: #fa424d !important;
   color: #fff !important;
   border: none;
- 
+  transition: 0.3s ease;
 }
 
 .btn-edit:hover {
-  background-color: #b30000 !important;
-  
+  background-color: #cc0000 !important;
 }
 
+/* ⚫ Delete button (Dark gray) */
 .btn-delete {
-  background-color: #444 !important;      /* 🖤 dark gray for delete */
+  background-color: #222 !important;
   color: #fff !important;
   border: none;
-  
+  transition: 0.3s ease;
 }
 
 .btn-delete:hover {
-  background-color: #111 !important;
-  transform: scale(1.03);
+  background-color: #000 !important;
 }
+
 
 /* Review Card */
 .rev-card {
