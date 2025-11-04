@@ -126,9 +126,20 @@ module.exports.destroyListing=async(req,res)=>{
 
 
 // Show listings by category
-module.exports.categoryListings = async (req, res) => {
-  const { category } = req.params;
-  const listings = await Listing.find({ category });
-  res.render("partials/listingsPartial", { listings });
-};
 
+module.exports.categoryFilter = async (req, res) => {
+  const { category } = req.params;
+
+  try {
+    // Find listings with matching category (case-insensitive)
+    const listings = await Listing.find({
+      category: { $regex: new RegExp(category, "i") },
+    });
+
+    // Render only the partial containing cards
+    res.render("partials/listingsPartial", { listings });
+  } catch (err) {
+    console.error("Error fetching listings by category:", err);
+    res.status(500).send("Error loading category listings");
+  }
+};

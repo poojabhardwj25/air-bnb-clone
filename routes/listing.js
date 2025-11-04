@@ -44,8 +44,10 @@ router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync(listingController.renderEdit
 
 //Category Route
 
-router.get("/category/:category", wrapAsync(listingController.categoryListings));
-
+router.get(
+  "/category/:category",
+  wrapAsync(listingController.categoryFilter)
+);
 
 
 module.exports=router;
