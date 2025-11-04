@@ -41,8 +41,11 @@ router
 //Edit Route
 router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync(listingController.renderEditForm))
 
-//Update Route
 
-//Delete Route
+
+
+
+
+
 
 module.exports=router;
