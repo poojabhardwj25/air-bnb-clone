@@ -123,3 +123,12 @@ module.exports.destroyListing=async(req,res)=>{
      req.flash("success"," Listing deleted!")
      res.redirect("/listings");
 }
+
+
+// Show listings by category
+module.exports.categoryListings = async (req, res) => {
+  const { category } = req.params;
+  const listings = await Listing.find({ category });
+  res.render("partials/listingsPartial", { listings });
+};
+
