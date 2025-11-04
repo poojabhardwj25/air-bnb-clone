@@ -22,6 +22,12 @@ router
     validateListing,
     wrapAsync(listingController.createListing))
 
+//Category Route
+
+router.get(
+  "/category/:category",
+  wrapAsync(listingController.categoryFilter)
+);
 
 
     
@@ -42,12 +48,6 @@ router
 router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync(listingController.renderEditForm))
 
 
-//Category Route
-
-router.get(
-  "/category/:category",
-  wrapAsync(listingController.categoryFilter)
-);
 
 
 module.exports=router;
