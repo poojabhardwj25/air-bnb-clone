@@ -264,13 +264,13 @@ if (!filters || !container) return;
           if (!res.ok) throw new Error(`Server returned ${res.status}`);
           const html = await res.text();
           container.innerHTML = html;
-          // re-run any JS that depends on the listing elements here (if any)
+          
         } catch (err) {
           console.error("Error loading category:", err);
         }
       });
     });
-  });()
+  
 </script>
 
 </body>
