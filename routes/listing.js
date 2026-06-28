@@ -50,4 +50,16 @@ router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync(listingController.renderEdit
 
 
 
+
+// AI Travel Tips Route
+
+const getTravelTips = require("../utils/aiTips.js");
+
+router.get("/:id/ai-tips", wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const listing = await Listing.findById(id);
+    const tips = await getTravelTips(listing.location, listing.country);
+    res.json({ tips });
+}));
+
 module.exports=router;
